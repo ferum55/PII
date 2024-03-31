@@ -1,176 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CMS is a software system designed to support the distance learning process with an emphasis on learning, as opposed to a guided learning environment, which is characterised by an emphasis on managing the learning process. ">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CMS is a software system designed to support the distance learning process with an emphasis on learning, as opposed to a guided learning environment, which is characterised by an emphasis on managing the learning process. "
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="styles.css" />
     <title>CMS</title>
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <h1 class="header-title">CMS</h1>
-        <div class="header-buttons">
-            <div class="dropdown">
-                <button class="bell" aria-label="Notifications"><img src="bell.png" width="25" alt="bell"></button>
-                <div class="dropdown-content" id="notificationsDropdown">
-                    <a href="#">Maksym Khrustavchuk sent you a message</a>
-                    <a  href="#">Vitalii Voin sent you a message</a>
-                    <a href="#">Sviatoslav Sheremetiev sent you a message</a>
-                </div>
-            </div>
-            
-            <div class="dropdown">
-                <button class="avatar" aria-label="User Profile"><img src="user.png" width="45" alt="user"></button>
-                
-                <div class="dropdown-content" id="optionsDropdown">
-                    <a  href="#">Profile</a>
-                    <a href="#">Log out</a>
-                </div>
-            </div>
-            <p class="name">Roman Ferko</p>
+      <h1 class="header-title">CMS</h1>
+      <div class="header-buttons">
+        <div class="dropdown">
+          <button class="bell" aria-label="Notifications">
+            <img src="bell.png" width="25" alt="bell" />
+          </button>
+          <div class="dropdown-content" id="notificationsDropdown">
+            <a href="#">Maksym Khrustavchuk sent you a message</a>
+            <a href="#">Vitalii Voin sent you a message</a>
+            <a href="#">Sviatoslav Sheremetiev sent you a message</a>
+          </div>
         </div>
+
+        <div class="dropdown">
+          <button class="avatar" aria-label="User Profile">
+            <img src="user.png" width="45" alt="user" />
+          </button>
+
+          <div class="dropdown-content" id="optionsDropdown">
+            <a href="#">Profile</a>
+            <a href="#">Log out</a>
+          </div>
+        </div>
+        <p class="name">Roman Ferko</p>
+      </div>
     </header>
     <div class="container">
-        <nav class="navigation">
-            <ul class="navigation-list">
-                <li class="navigation-item"><a href="#">Dashboard</a></li>
-                <li class="navigation-item"><a href="#">Students</a></li>
-                <li class="navigation-item"><a href="tasks.html">Tasks</a></li>
-            </ul>
-        </nav>
-        <main class="main">
-            <div class="main-header">
-                <div class="main-title">Students</div>
-                <button class="main-button-add" aria-label="Add Student">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </div>
-            <div class="main-content">
-                <table id="table" class="main-table">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="checkbox-thead" aria-label="Select All Students"></th>
-                            <th>Group</th>
-                            <th>Name</th>
-                            <th>Gender</th>
-                            <th>Birthday</th>
-                            <th>Status</th>
-                            <th>Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input type="checkbox" class="table-checkbox" aria-label="Select Student"></td>
-                            <td>PZ-25</td>
-                            <td>Vitalii Voin</td>
-                            <td>M</td>
-                            <td>28.04.2005</td>
-                            <td class="table-status"><i class="fa-solid fa-circle"></i></td>
-                            <td class="table-buttons" >
-                                <button class="edit-button" aria-label="Edit Student"><img src="pencil.png" width="20" alt="pencil"></button>
-                                <button class="remove-button" aria-label="Remove Student"><img src="X.png" width="20" alt="cross"></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" class="table-checkbox" aria-label="Select Student"></td>
-                            <td>PZ-25</td>
-                            <td>Maksym Khrustavchuk</td>
-                            <td>M</td>
-                            <td>01.08.2005</td>
-                            <td class="table-status"><i class="fa-solid fa-circle"></i></td>
-                            <td class="table-buttons">
-                                <button class="edit-button" aria-label="Edit Student"><img src="pencil.png" width="20" alt="pencil"></button>
-                                <button class="remove-button" aria-label="Remove Student"><img src="X.png" width="20" alt="cross"></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox" class="table-checkbox" aria-label="Select Student"></td>
-                            <td>PZ-25</td>
-                            <td>Sviatoslav Sheremetiev</td>
-                            <td>M</td>
-                            <td>22.03.2004</td>
-                            <td class="table-status"><i class="fa-solid fa-circle"></i></td>
-                            <td class="table-buttons">
-                                <button class="edit-button" aria-label="Edit Student"><img src="pencil.png" width="20" alt="pencil"></button>
-                                <button class="remove-button" aria-label="Remove Student"><img src="X.png" width="20" alt="cross"></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <nav class="main-navigation">
-                    <button class="main-navigation-button">&lt;</button>
-                    <button class="main-navigation-button">1</button>
-                    <button class="main-navigation-button">2</button>
-                    <button class="main-navigation-button">3</button>
-                    <button class="main-navigation-button">4</button>
-                    <button class="main-navigation-button">&gt;</button>
-                </nav>
-            </div>
-        </main>
+      <nav class="navigation">
+        <ul class="navigation-list">
+          <li class="navigation-item"><a href="#">Dashboard</a></li>
+          <li class="navigation-item"><a href="#">Students</a></li>
+          <li class="navigation-item"><a href="tasks.html">Tasks</a></li>
+        </ul>
+      </nav>
+      <main class="main">
+        <div class="main-header">
+          <div class="main-title">Students</div>
+          <button class="main-button-add" aria-label="Add Student">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="main-content">
+          <table id="table" class="main-table">
+            <thead>
+              <tr>
+                <th>
+                  <input
+                    type="checkbox"
+                    id="checkbox-thead"
+                    aria-label="Select All Students"
+                  />
+                </th>
+                <th>Group</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Birthday</th>
+                <th>Status</th>
+                <th>Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <input
+                    type="checkbox"
+                    class="table-checkbox"
+                    aria-label="Select Student"
+                  />
+                </td>
+                <td>PZ-25</td>
+                <td>Vitalii Voin</td>
+                <td>M</td>
+                <td>28.04.2005</td>
+                <td class="table-status"><i class="fa-solid fa-circle"></i></td>
+                <td class="table-buttons">
+                  <button class="edit-button" aria-label="Edit Student">
+                    <img src="pencil.png" width="20" alt="pencil" />
+                  </button>
+                  <button class="remove-button" aria-label="Remove Student">
+                    <img src="X.png" width="20" alt="cross" />
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="checkbox"
+                    class="table-checkbox"
+                    aria-label="Select Student"
+                  />
+                </td>
+                <td>PZ-25</td>
+                <td>Maksym Khrustavchuk</td>
+                <td>M</td>
+                <td>01.08.2005</td>
+                <td class="table-status"><i class="fa-solid fa-circle"></i></td>
+                <td class="table-buttons">
+                  <button class="edit-button" aria-label="Edit Student">
+                    <img src="pencil.png" width="20" alt="pencil" />
+                  </button>
+                  <button class="remove-button" aria-label="Remove Student">
+                    <img src="X.png" width="20" alt="cross" />
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input
+                    type="checkbox"
+                    class="table-checkbox"
+                    aria-label="Select Student"
+                  />
+                </td>
+                <td>PZ-25</td>
+                <td>Sviatoslav Sheremetiev</td>
+                <td>M</td>
+                <td>22.03.2004</td>
+                <td class="table-status"><i class="fa-solid fa-circle"></i></td>
+                <td class="table-buttons">
+                  <button class="edit-button" aria-label="Edit Student">
+                    <img src="pencil.png" width="20" alt="pencil" />
+                  </button>
+                  <button class="remove-button" aria-label="Remove Student">
+                    <img src="X.png" width="20" alt="cross" />
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav class="main-navigation">
+            <button class="main-navigation-button">&lt;</button>
+            <button class="main-navigation-button">1</button>
+            <button class="main-navigation-button">2</button>
+            <button class="main-navigation-button">3</button>
+            <button class="main-navigation-button">4</button>
+            <button class="main-navigation-button">&gt;</button>
+          </nav>
+        </div>
+      </main>
     </div>
     <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h4 id="modal-content-title">Add New Student</h4>
-            <form id="addStudentForm" onsubmit="return validateForm()">
-                <div class="addStudentForm-elements">
-                    <label for="group">Groups:</label><br>
-                    <select id="group" name="group">
-                        <option value="PZ-25">PZ-25</option>
-                        <option value="PZ-26">PZ-26</option>
-                        <option value="PZ-27">PZ-27</option>
-                    </select><br>
-                </div>
-                <div class="addStudentForm-elements">
-                    <label for="name">Name:</label><br>
-                    <input type="text" id="name" name="name" autocomplete="off" required><br>
-                </div>
-                <div class="addStudentForm-elements">
-                    <label for="surname">Surname:</label><br>
-                    <input type="text" id="surname" name="surname" autocomplete="off"  required><br>
-                </div>
-                <div class="addStudentForm-elements">
-                    <label for="gender">Gender:</label><br>
-                    <select id="gender" name="gender">
-                        <option value="M">Male</option>
-                        <option value="F">Female</option>
-                    </select><br>
-                </div>
-                <div class="addStudentForm-elements">
-                    <label for="birthday">Birthday:</label><br>
-                    <input type="date" id="birthday" name="birthday" value="2004-09-05"><br> 
-                </div>
-                <input type="hidden" id="studentId" name="studentId">
-                <div class="addStudentForm-elements">
-                    <button type="submit" aria-label="Add Student">Add Student</button>
-                </div>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4 id="modal-content-title">Add New Student</h4>
+        <form id="addStudentForm" onsubmit="return validateForm()">
+          <div class="addStudentForm-elements">
+            <label for="group">Groups:</label><br />
+            <select id="group" name="group">
+              <option value="PZ-25">PZ-25</option>
+              <option value="PZ-26">PZ-26</option>
+              <option value="PZ-27">PZ-27</option></select
+            ><br />
+          </div>
+          <div class="addStudentForm-elements">
+            <label for="name">Name:</label><br />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              autocomplete="off"
+              required
+            /><br />
+          </div>
+          <div class="addStudentForm-elements">
+            <label for="surname">Surname:</label><br />
+            <input
+              type="text"
+              id="surname"
+              name="surname"
+              autocomplete="off"
+              required
+            /><br />
+          </div>
+          <div class="addStudentForm-elements">
+            <label for="gender">Gender:</label><br />
+            <select id="gender" name="gender">
+              <option value="M">Male</option>
+              <option value="F">Female</option></select
+            ><br />
+          </div>
+          <div class="addStudentForm-elements">
+            <label for="birthday">Birthday:</label><br />
+            <input
+              type="date"
+              id="birthday"
+              name="birthday"
+              value="2004-09-05"
+            /><br />
+          </div>
+          <input type="hidden" id="studentId" name="studentId" />
+          <div class="addStudentForm-elements">
+            <button type="submit" aria-label="Add Student">Add Student</button>
+          </div>
+        </form>
+      </div>
     </div>
     <div id="removeStudentModal" class="modal">
-        <div class="modal-content">
-            <span class="close-remove">&times;</span>
-            <h4>Remove Student</h4>
-            <p>Are you sure you want to remove this student?</p>
-            <div>
-                <button id="confirmRemove" aria-label="Confirm Removal">OK</button>
-                <button id="cancelRemove" aria-label="Cancel Removal">Cancel</button>
-            </div>
+      <div class="modal-content">
+        <span class="close-remove">&times;</span>
+        <h4>Remove Student</h4>
+        <p>Are you sure you want to remove this student?</p>
+        <div>
+          <button id="confirmRemove" aria-label="Confirm Removal">OK</button>
+          <button id="cancelRemove" aria-label="Cancel Removal">Cancel</button>
         </div>
+      </div>
     </div>
     <script src="script.js"></script>
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('../sw.js').then(registration => {
-                console.log('ServiceWorker registration successful with scope: ', registration);
-            }).catch(error => {
-                console.log('ServiceWorker registration failed: ', error);
-            });
-        }
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("../sw.js")
+          .then((registration) => {
+            console.log(
+              "ServiceWorker registration successful with scope: ",
+              registration
+            );
+          })
+          .catch((error) => {
+            console.log("ServiceWorker registration failed: ", error);
+          });
+      }
     </script>
-</body>
+  </body>
 </html>
