@@ -1,0 +1,378 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: gray;
+    padding: 5px;
+}
+
+.header-title {
+    font-size: 20px;
+    color: white;
+    margin: 0 0;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.bell {
+
+    background: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    animation: shake 2s cubic-bezier(0.36, 0.07, 0.19, 0.97) both infinite;
+    transform-origin: top left;
+}
+ 
+@keyframes shake {
+    30%,
+    70% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%,
+    60% {
+      transform: translate3d(4px, 0, 0);
+    }
+}
+
+.avatar {
+    color: white;
+    background: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.name{
+    display: inline-block;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: gray;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    color: #fff;
+}
+
+.navigation {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.navigation-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.navigation-item {
+    margin-bottom: 15px;
+}
+
+.navigation-item a {
+    text-decoration: none;
+    color: gray;
+    display: block;
+    padding: 8px 16px;
+}
+
+.navigation-item a:hover {
+    color: white;
+    background-color: gray;
+    cursor: pointer;
+}
+
+.main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.main-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main-button-add {
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-width: 1px;
+    width: 40px;
+    height: 40px;
+}
+
+.main-button-add:hover {
+    background-color: gray;
+    color:white;
+    cursor: pointer;
+}
+
+.edit-button,
+.remove-button {
+    background-color: white;
+    color: black;
+    padding: 3px 10px;
+    border-width: 1px;
+    margin: 3px;
+}
+
+.remove-button:hover,
+.edit-button:hover {
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+    border-color: white;
+}
+
+.main-table {
+    width: 100%;
+    margin-bottom: 10px;
+    border-collapse:collapse;
+}
+
+.main-table th,
+.main-table td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+
+#checkbox-thead {
+    pointer-events: none;
+}
+
+.table-status {
+    color: #aaa;
+}
+.table-buttons{
+    display: flex;
+    justify-content: center;
+}
+
+.main-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.main-navigation-button {
+    font-size: 16px;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-width: 1px;
+    background-color: white;
+    color: black;
+}
+
+.main-navigation-button:hover {
+    background: none;
+    background-color: gray;
+    color: black;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid gray;
+    width: 60%;
+    max-width: 400px;
+}
+
+.close,
+.close-remove {
+    justify-content: right;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+}
+
+.close:hover,
+.close:focus,
+.close-remove:hover,
+.close-remove:focus {
+    color: white;
+    background-color: gray;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.addStudentForm-elements {
+    display: flex;
+    flex-direction: column;
+}
+
+.addStudentForm-elements select,
+.addStudentForm-elements input {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+.addStudentForm-elements button,
+#confirmRemove,
+#cancelRemove {
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border-color: black;
+    border-width: 1px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.addStudentForm-elements button:hover,
+#confirmRemove:hover,
+#cancelRemove:hover {
+    background-color: gray;
+    color: white;
+}
+@media only screen and (max-width: 650px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .header-title {
+        font-size: 24px;
+    }
+
+    .dropdown-content {
+        min-width: 120px;
+    }
+
+    .navigation-item a {
+        padding: 8px 12px;
+    }
+
+    .main-title {
+        font-size: 20px;
+    }
+
+    .main-button-add {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+
+    .edit-button,
+    .remove-button {
+        padding: 2px 8px;
+        font-size: 12px;
+    }
+
+    .main-table th,
+    .main-table td {
+        padding: 6px;
+    }
+
+    .main-navigation-button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .modal-content {
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .close {
+        display: flex;
+        justify-content: right;
+        font-size: 20px;
+    }
+
+    .addStudentForm-elements select,
+    .addStudentForm-elements input {
+        padding: 6px;
+    }
+
+    .addStudentForm-elements button,
+    #confirmRemove,
+    #cancelRemove {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .main-table th,
+    .main-table td {
+        font-size: 12px;
+    }
+}
