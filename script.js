@@ -57,6 +57,7 @@ addStudentForm.addEventListener('submit', (event) => {
     const surname = document.getElementById('surname').value;
     const gender = document.getElementById('gender').value;
     const birthday = document.getElementById('birthday').value;
+    const id = document.getElementById('studentId').value;
     const IsValid = validateForm();
   if (!IsValid) {
     return;
@@ -88,6 +89,7 @@ addStudentForm.addEventListener('submit', (event) => {
 
         newRow.querySelector('.edit-button').addEventListener('click', handleEdit);
         newRow.querySelector('.remove-button').addEventListener('click', handleRemove);
+        sendAddEditStudentFormDataToServer("/api/students", id, group, name, surname, gender, birthday);
     }
 
     addStudentForm.reset();
@@ -158,8 +160,6 @@ function resetModalAndForm() {
     if (editingRow) {
         editingRow.classList.remove('editing');
     }
-
-    // Hide the modal
     modal.style.display = 'none';
 }
 
@@ -187,11 +187,13 @@ function sendAddEditStudentFormDataToServer(serverPath, id, groupField, firstNam
 
     console.log("GET request sent to:", requestURL, xhr);
 }
+
 function validateForm() {
     // Валідація форми
     var name = document.getElementById('name').value;
     var surname = document.getElementById('surname').value;
-
+    var birthday = new Date(document.getElementById('birthday').value);
+    
     // Регулярний вираз для перевірки, чи введені тільки букви латиниці та кирилиці
     var regex = /^[A-Za-zА-Яа-яЁё]+$/;
 
@@ -201,12 +203,28 @@ function validateForm() {
         return false; // Відмова від відправки форми
     }
 
+    // Перевірка віку
+    var currentDate = new Date();
+    var age = currentDate.getFullYear() - birthday.getFullYear();
+    var birthMonth = birthday.getMonth();
+    var currentMonth = currentDate.getMonth();
+
+    if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.getDate() < birthday.getDate())) {
+        age--;
+    }
+
+    if (age < 16) {
+        alert('You must be at least 16 years old to register.');
+        return false;
+    }
+
     // Якщо все валідно, встановіть значення для прихованого поля "id"
     document.getElementById('studentId').value = generateId(); // Припустимо, що generateId() - це ваша функція для генерації унікального id
 
     // Форма валідна, можна відправляти
     return true;
 }
+
 
 function generateId() {
     return 'STU' + Math.random().toString(36).substr(2, 9);

@@ -175,7 +175,7 @@
             ><br />
           </div>
           <div class="addStudentForm-elements">
-            <label for="name">Name:</label><br />
+            <label for="name" class="Name-Label">Name:</label><br />
             <input
               type="text"
               id="name"
@@ -185,7 +185,7 @@
             /><br />
           </div>
           <div class="addStudentForm-elements">
-            <label for="surname">Surname:</label><br />
+            <label for="surname" class="Surname-Label">Surname:</label><br />
             <input
               type="text"
               id="surname"
@@ -202,15 +202,11 @@
             ><br />
           </div>
           <div class="addStudentForm-elements">
-            <label for="birthday">Birthday:</label><br />
-            <input
-              type="date"
-              id="birthday"
-              name="birthday"
-              value="2004-09-05"
-            /><br />
+            <label for="birthday" class="BDay-Label wavy-underline">Birthday:</label><br />
+            <input type="date" id="birthday" name="birthday" value="2004-09-05"/>
+            <input type="hidden" id="studentId" name="inputId" />
           </div>
-          <input type="hidden" id="studentId" name="studentId" />
+          <br />
           <div class="addStudentForm-elements">
             <button type="submit" aria-label="Add Student">Add Student</button>
           </div>

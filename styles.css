@@ -375,4 +375,10 @@ body {
     .main-table td {
         font-size: 12px;
     }
+
+    .wavy-underline {
+        text-decoration: underline;
+        text-decoration-style: wavy;
+        text-decoration-color: red;
+    }
 }
