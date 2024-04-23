@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UCD_Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b108d87e1ac4321b242c8bef7c1aaecbb7e3db0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e741de3a0df4d723fd426fe647ba504fc6479cfc")]
 [assembly: System.Reflection.AssemblyProductAttribute("UCD_Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UCD_Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -37,8 +37,8 @@ namespace UCD_Server.Migrations
                     b.Property<string>("Group")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("IsActive")
-                        .HasColumnType("int");
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");

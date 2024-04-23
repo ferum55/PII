@@ -8,14 +8,13 @@ namespace UCD_Server.Models
 	public record Student 
 	{
         private static int _idCounter = 0;
-
         public int? Id { get; init; }
         public string? Group { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Gender { get; set; }
         public string? Birthday { get; set; }
-        public int? IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         public Student()
         {
@@ -25,11 +24,12 @@ namespace UCD_Server.Models
             LastName = "undefined last name";
             Gender = "undefined gender";
             Birthday = "undefined birthday";
+     
         }
 
         public Student(string? group, string? firstName, string? lastName, string? gender, string? birthday)
         {
-            var validationResult = GetErrorsArrayForInvalidFieldsOrNullsOtherwise(group, firstName, lastName, gender, birthday);
+            var validationResult = GetErrorsArrayForInvalidFieldsOrNullsOtherwise(firstName, lastName, birthday);
             if (validationResult.Any(res => res is not null))
             {
                 throw new ArgumentException(string.Join("&&", validationResult));
@@ -42,14 +42,14 @@ namespace UCD_Server.Models
             LastName = lastName;
             Gender = gender;
             Birthday = birthday;
+            IsActive = false;
         }
 
-        public static string?[] GetErrorsArrayForInvalidFieldsOrNullsOtherwise(string? group, string? firstName, string? lastName, string? gender, string? birthday)
+        public static string?[] GetErrorsArrayForInvalidFieldsOrNullsOtherwise(string? firstName, string? lastName, string? birthday)
         {
-            
-            string? firstNameValidationResult = GetNullIfNameValidOrErrorOthervise(firstName);
-            string? lastNameValidationResult = GetNullIfNameValidOrErrorOthervise(lastName);
-            string? birthdayValidationResult = GetNullIfBirthdayValidOrErrorOthervise(birthday);
+            string? firstNameValidationResult = ValidateNameAndSurname(firstName);
+            string? lastNameValidationResult = ValidateNameAndSurname(lastName);
+            string? birthdayValidationResult = ValidateBirthday(birthday);
 
             return new string?[]
             {
@@ -59,49 +59,58 @@ namespace UCD_Server.Models
             };
         }
 
-
-
-        private static string? GetNullIfNameValidOrErrorOthervise(string? firstName)
+        private static string? ValidateNameAndSurname(string? firstName)
         {
-            if (string.IsNullOrEmpty(firstName) || firstName.Length > 20|| firstName.Length <5 || !System.Text.RegularExpressions.Regex.IsMatch(firstName, @"^[a-zA-Z]*$"))
-            {
-                return "Invalid input. This field can only contain letters a-z (A-Z) and must have length between 5 and 20.";
-            }
+            if (string.IsNullOrEmpty(firstName) || firstName.Length < 3 || firstName.Length > 20 || !System.Text.RegularExpressions.Regex.IsMatch(firstName, @"^[a-zA-Z]*$"))
+                return "Invalid input. This field can only contain letters a-z (A-Z) and must have length between 3 and 20.";
             else
-            { 
                 return null;
-            }
         }
 
-
-        private static string? GetNullIfBirthdayValidOrErrorOthervise(string? birthday)
+        private static string? ValidateBirthday(string? birthday)
         {
-            if(string.IsNullOrEmpty(birthday))
-            {
+            if (string.IsNullOrEmpty(birthday))
                 return "This field cannot be empty";
-            }
 
             var splitedBirthday = birthday.Split('-');
-            if(splitedBirthday is not null)
+            if (splitedBirthday is not null)
             {
-                int.TryParse(splitedBirthday[0], out int year);
-                int.TryParse(splitedBirthday[1], out int month);
-                int.TryParse(splitedBirthday[2], out int day);
-
-                if (new DateTime(year, month, day) > DateTime.Now)
+                if (!int.TryParse(splitedBirthday[0], out int year) ||
+                    !int.TryParse(splitedBirthday[1], out int month) ||
+                    !int.TryParse(splitedBirthday[2], out int day))
                 {
-                    return "This field cannot contain a date in the future";
+                    return "Invalid birthday format. Please use YYYY-MM-DD";
                 }
+
+                var possibleBirthday = new DateTime(year, month, day);
+
+                // Перевірка дати в майбутньому
+                if (possibleBirthday > DateTime.Now)
+                    return "This field cannot contain a date in the future";
+
+                // Перевірка віку (старше 18 років)
+                var today = DateTime.Today;
+                var age = today.Year - possibleBirthday.Year;
+
+                // Перевірка дня народження, який припадає на сьогоднішню дату
+                if (possibleBirthday.Month > today.Month ||
+                    (possibleBirthday.Month == today.Month && possibleBirthday.Day > today.Day))
+                {
+                    age--;
+                }
+
+                if (age < 18)
+                    return "User must be at least 18 years old";
             }
 
             return null;
         }
 
+
         public static void SetLastAddedStudentId(int? lastId)
         {
             _idCounter = lastId is null ? 0 : (int)lastId;
         }
-
     }
 }
 

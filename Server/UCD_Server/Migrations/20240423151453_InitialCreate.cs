@@ -30,7 +30,7 @@ namespace UCD_Server.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Birthday = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    IsActive = table.Column<int>(type: "int", nullable: true)
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },
                 constraints: table =>
                 {

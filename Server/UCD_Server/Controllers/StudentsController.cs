@@ -31,7 +31,6 @@ namespace UCD_Server.Controllers
             }
         }
 
-
         public string Index()
         {
             return "Welcome from UCD server";
@@ -43,10 +42,8 @@ namespace UCD_Server.Controllers
         public async Task<string> AddStudent([FromBody] Student postRequestStudent)
         {
             string?[] errorsArray = Student.GetErrorsArrayForInvalidFieldsOrNullsOtherwise(
-                postRequestStudent.Group,
                 postRequestStudent.FirstName,
                 postRequestStudent.LastName,
-                postRequestStudent.Gender,
                 postRequestStudent.Birthday
             );
 
@@ -57,8 +54,7 @@ namespace UCD_Server.Controllers
                     new Response(
                         false,
                         new { code = 400, message = string.Join("&&", errorsArray) },
-                        null
-                    )
+                        null)
                 );
             }
             else
@@ -90,10 +86,8 @@ namespace UCD_Server.Controllers
         public async Task<string> EditStudent([FromBody] Student postRequestStudent)
         {
             var errorsArray = Student.GetErrorsArrayForInvalidFieldsOrNullsOtherwise(
-                postRequestStudent.Group,
                 postRequestStudent.FirstName,
                 postRequestStudent.LastName,
-                postRequestStudent.Gender,
                 postRequestStudent.Birthday
             );
 

@@ -11,7 +11,7 @@ using UCD_Server.Models;
 namespace UCD_Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240417070044_InitialCreate")]
+    [Migration("20240423151453_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -40,8 +40,8 @@ namespace UCD_Server.Migrations
                     b.Property<string>("Group")
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("IsActive")
-                        .HasColumnType("int");
+                    b.Property<bool?>("IsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("LastName")
                         .HasColumnType("longtext");

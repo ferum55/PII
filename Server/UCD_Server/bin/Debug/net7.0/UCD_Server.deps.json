@@ -9,7 +9,6 @@
       "UCD_Server/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.17",
-          "Microsoft.EntityFrameworkCore.Design": "7.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.17",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.17",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0"
