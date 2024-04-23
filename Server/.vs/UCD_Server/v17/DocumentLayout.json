@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\PVI\\PII\\Server\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|d:\\pvi\\pii\\server\\ucd_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|solutionrelative:ucd_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|d:\\pvi\\pii\\server\\ucd_server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|solutionrelative:ucd_server\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|d:\\pvi\\pii\\server\\ucd_server\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|solutionrelative:ucd_server\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|d:\\pvi\\pii\\server\\ucd_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|solutionrelative:ucd_server\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CCEF3C8F-3FEC-430E-9938-FF1FDC5BEC24}|UCD_Server\\UCD_Server.csproj|d:\\pvi\\pii\\server\\ucd_server\\migrations\\20240417070044_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,17 +26,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\PVI\\PII\\Server\\UCD_Server\\appsettings.json",
               "RelativeDocumentMoniker": "UCD_Server\\appsettings.json",
               "ToolTip": "D:\\PVI\\PII\\Server\\UCD_Server\\appsettings.json",
               "RelativeToolTip": "UCD_Server\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-04-17T07:18:50.854Z",
               "EditorCaption": ""
@@ -55,25 +55,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Student.cs",
               "DocumentMoniker": "D:\\PVI\\PII\\Server\\UCD_Server\\Models\\Student.cs",
               "RelativeDocumentMoniker": "UCD_Server\\Models\\Student.cs",
               "ToolTip": "D:\\PVI\\PII\\Server\\UCD_Server\\Models\\Student.cs",
               "RelativeToolTip": "UCD_Server\\Models\\Student.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwBAAAAAtAAAA",
+              "ViewState": "AQIAAF8AAAAAAAAAAADwvxEAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T00:28:26.39Z"
+              "WhenOpened": "2024-04-17T00:28:26.39Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\PVI\\PII\\Server\\UCD_Server\\Program.cs",
               "RelativeDocumentMoniker": "UCD_Server\\Program.cs",
               "ToolTip": "D:\\PVI\\PII\\Server\\UCD_Server\\Program.cs",
               "RelativeToolTip": "UCD_Server\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-16T23:58:33.605Z",
               "EditorCaption": ""
