@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\UCD_Server.props" />
+</Project>

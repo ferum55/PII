@@ -17,6 +17,11 @@
     />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <title>CMS</title>
   </head>
   <body>
@@ -165,7 +170,7 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <h4 id="modal-content-title">Add New Student</h4>
-        <form id="addStudentForm" onsubmit="return validateForm()">
+        <form id="addStudentForm">
           <div class="addStudentForm-elements">
             <label for="group">Groups:</label><br />
             <select id="group" name="group">
@@ -202,7 +207,7 @@
             ><br />
           </div>
           <div class="addStudentForm-elements">
-            <label for="birthday" class="BDay-Label wavy-underline">Birthday:</label><br />
+            <label for="birthday" class="BDay-Label">Birthday:</label><br />
             <input type="date" id="birthday" name="birthday" value="2004-09-05"/>
             <input type="hidden" id="studentId" name="inputId" />
           </div>
@@ -240,5 +245,7 @@
           });
       }
     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
   </body>
 </html>

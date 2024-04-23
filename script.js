@@ -9,6 +9,62 @@ const closeRemoveButton = document.querySelector('.close-remove');
 const confirmRemoveButton = document.getElementById('confirmRemove');
 const cancelRemoveButton = document.getElementById('cancelRemove');
 
+
+const UCD_SERVER_URL = "https://localhost:7179/";
+window.addEventListener('load', function(event) 
+{
+    getAllStudentServerRequest
+    (
+        UCD_SERVER_URL + 'Students/GetAllStudents', 
+        function(responseText)
+        {
+            let responseObject = JSON.parse(responseText);
+
+            if(responseObject.Status === true)
+            {
+                let allStudentsArray = responseObject.Object;
+                allStudentsArray.forEach(student => {
+                    addNewStudentsTableRow(
+                        student.Id, 
+                        student.Group, 
+                        student.FirstName + ' ' + student.LastName, 
+                        student.Gender, 
+                        formatBirthday(student.Birthday)
+                    );
+                });
+
+            }
+        }
+    );
+});
+
+function addNewStudentsTableRow(id, group, name, gender, birthday)
+{
+  const newRow = document.createElement("tr");
+  newRow.innerHTML = `
+            <td><input type="checkbox" class="table-checkbox"/></td>
+            <td>${group}</td>
+            <td>${name}</td>
+            <td>${gender}</td>
+            <td>${(birthday)}</td> 
+            <td class="table-status"><span class="circle"></span></td>
+                <td>
+                  <button class="edit-button">
+                    <img src="pencil.png" width="20" alt="cross" />
+                  </button>
+                  <button class="remove-button">
+                    <img src="X.png" width="20" alt="cross" />
+                  </button>
+                </td>`;
+
+  const tableBody = document.querySelector(".main-table tbody");
+  tableBody.appendChild(newRow);
+
+  newRow.querySelector(".edit-button").addEventListener("click", handleEdit);
+  newRow.querySelector(".remove-button").addEventListener("click", handleRemove);
+  newRow.setAttribute('data-id', id);
+}
+
 let rowToRemove = null;
 
 
@@ -49,54 +105,173 @@ cancelRemoveButton.addEventListener('click', () => {
     removeStudentModal.style.display = 'none'; 
 });
 
-
 addStudentForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const group = document.getElementById('group').value;
-    const name = document.getElementById('name').value;
-    const surname = document.getElementById('surname').value;
-    const gender = document.getElementById('gender').value;
-    const birthday = document.getElementById('birthday').value;
-    const id = document.getElementById('studentId').value;
-    const IsValid = validateForm();
-  if (!IsValid) {
-    return;
+  event.preventDefault();
+
+  const group = document.getElementById('group').value;
+  const name = document.getElementById('name').value;
+  const surname = document.getElementById('surname').value;
+  const gender = document.getElementById('gender').value;
+  const birthday = document.getElementById('birthday').value;
+
+  const editingRow = document.querySelector('.editing');
+  if (editingRow) {
+    editStudentServerRequest(
+      UCD_SERVER_URL + 'Students/EditStudent',
+      editingRow.getAttribute('data-id'),
+      group,
+      name,
+      surname,
+      gender,
+      birthday,
+      (responseText) => {
+        let responseObject = JSON.parse(responseText);
+
+        if (responseObject.Status === false) {
+          Toastify({
+            text: "Name and surname must contain only letters",
+            duration: 2000,
+            className: "info",
+            style: {
+              background: "red",
+            },
+          }).showToast();
+        } else {
+          editingRow.cells[1].textContent = group;
+          editingRow.cells[2].textContent = `${name} ${surname}`;
+          editingRow.cells[3].textContent = gender;
+          editingRow.cells[4].textContent = formatBirthday(birthday);
+          editingRow.classList.remove('editing');
+
+          clearFormValidation();
+          addStudentForm.reset();
+          modal.style.display = 'none';
+        }
+      }
+    );
+  } else {
+    addNewStudentServerRequest(
+      UCD_SERVER_URL + 'Students/AddStudent',
+      group,
+      name,
+      surname,
+      gender,
+      birthday,
+      (responseText) => {
+        let responseObject = JSON.parse(responseText);
+
+        if (responseObject.Status === false) {
+          Toastify({
+            text: "Name and surname must contain only letters",
+            duration: 2000,
+            className: "info",
+            style: {
+              background: "red",
+            },
+          }).showToast();
+        } 
+        else {
+          addNewStudentsTableRow(responseObject.Object.Id, responseObject.Object.Group, responseObject.Object.FirstName + ' ' + responseObject.Object.LastName, responseObject.Object.Gender, formatBirthday(responseObject.Object.Birthday));
+          addStudentForm.reset();
+          modal.style.display = 'none';
+        }
+      }
+    );
   }
-    const editingRow = document.querySelector('.editing');
-    if (editingRow) {
-        editingRow.cells[1].textContent = group;
-        editingRow.cells[2].textContent = `${name} ${surname}`;
-        editingRow.cells[3].textContent = gender;
-        editingRow.cells[4].textContent = formatBirthday(birthday);
-        editingRow.classList.remove('editing');
-    } else {
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td><input type="checkbox" class="table-checkbox"/></td>
-            <td>${group}</td>
-            <td>${name} ${surname}</td>
-            <td>${gender}</td>
-            <td>${formatBirthday(birthday)}</td> 
-            <td class="table-status" ><i class="fa-solid fa-circle"></i></td>
-            <td>
-                <button class="edit-button" aria-label="Edit Student"><img src="pencil.png" width="20px"></button>
-                <button class="remove-button" aria-label="Remove Student"><img src="X.png" width="20px"></button>
-            </td>
-        `;
-
-        const tableBody = document.querySelector('.main-table tbody');
-        tableBody.appendChild(newRow);
-
-        newRow.querySelector('.edit-button').addEventListener('click', handleEdit);
-        newRow.querySelector('.remove-button').addEventListener('click', handleRemove);
-        sendAddEditStudentFormDataToServer("/api/students", id, group, name, surname, gender, birthday);
-    }
-
-    addStudentForm.reset();
-    modal.style.display = 'none';
-    setupCheckboxEventListeners();
 });
+/**
+ * @param {string} requestUrl
+ * @param {string} group - group field value
+ * @param {string} firstName - firstName field value
+ * @param {string} lastName - lastName field value
+ * @param {string} gender - gender field value
+ * @param {string} birthday - birthday field value
+ * @param {function(string): void} actionAfterResponse - function,  which receives a response from the server as a parameter "responseText (string)" and performs actions on it
+ * @returns {void}
+*/
 
+
+function addNewStudentServerRequest(requestUrl, group, firstName, lastName, gender, birthday, actionAfterResponse)
+{
+    const data = {
+        Group: group,
+        FirstName: firstName,
+        LastName: lastName,
+        Gender: gender,
+        Birthday: birthday
+    };
+    console.log("POST request data: \n\n", data);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", requestUrl, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                console.log('Success.\n\nResponse text:\n\n', xhr.responseText);
+                actionAfterResponse(xhr.responseText);
+            } else {
+                console.error('Error:', xhr.responseText);
+            }
+        }
+    };
+
+    xhr.send(JSON.stringify(data));
+    console.log("POST add student request sent to:", requestUrl);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+              console.log('Success.\n\nResponse text:\n\n', xhr.responseText);
+              actionAfterResponse(xhr.responseText);
+          } else {
+              console.error('Error:', xhr.responseText);
+          }
+      }
+  };
+
+  xhr.send(JSON.stringify(data));
+  console.log("POST edit student request sent to:", requestUrl);
+}
+
+function getAllStudentServerRequest(requestUrl, actionAfterResponse)
+{
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", requestUrl, true);
+
+  xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+              console.log('Success.\n\nResponse text:\n\n', xhr.responseText);
+              actionAfterResponse(xhr.responseText);
+          } else {
+              console.error('Error:', xhr.responseText);
+          }
+      }
+  };
+
+  xhr.send();
+  console.log("GET all student request sent to:", requestUrl);
+}
+
+
+function editStudentServerRequest(requestUrl, id, group, firstName, lastName, gender, birthday, actionAfterResponse)
+{
+    const data = {
+        Id: id,
+        Group: group,
+        FirstName: firstName,
+        LastName: lastName,
+        Gender: gender,
+        Birthday: birthday
+    };
+    console.log("POST request data: \n\n", data);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", requestUrl, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+  }
 function handleEdit(event) {
     const row = event.target.closest('tr');
     const cells = row.querySelectorAll('td');
@@ -166,66 +341,4 @@ function resetModalAndForm() {
 function handleRemove(event) {
     rowToRemove = event.target.closest('tr'); 
     removeStudentModal.style.display = 'block'; 
-}
-
-function sendAddEditStudentFormDataToServer(serverPath, id, groupField, firstNameField, lastNameField, genderField, birthdayField) {
-    let xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            console.log("Response from server:", xhr.responseText);
-        }
-    };
-
-    let queryString = 'idValue=' + id + '&groupFieldValue=' + groupField + '&firstNameFieldValue=' + firstNameField +
-        '&lastNameFieldValue=' + lastNameField + '&genderFieldValue=' + genderField + '&birthdayFieldValue=' +
-        birthdayField;
-    let requestURL = serverPath + '?' + queryString;
-
-    xhr.open('GET', requestURL);
-    xhr.send();
-
-    console.log("GET request sent to:", requestURL, xhr);
-}
-
-function validateForm() {
-    // Валідація форми
-    var name = document.getElementById('name').value;
-    var surname = document.getElementById('surname').value;
-    var birthday = new Date(document.getElementById('birthday').value);
-    
-    // Регулярний вираз для перевірки, чи введені тільки букви латиниці та кирилиці
-    var regex = /^[A-Za-zА-Яа-яЁё]+$/;
-
-    // Перевірка введених даних
-    if (!regex.test(name) || !regex.test(surname)) {
-        alert('Please enter only letters in the Name and Surname fields.');
-        return false; // Відмова від відправки форми
-    }
-
-    // Перевірка віку
-    var currentDate = new Date();
-    var age = currentDate.getFullYear() - birthday.getFullYear();
-    var birthMonth = birthday.getMonth();
-    var currentMonth = currentDate.getMonth();
-
-    if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDate.getDate() < birthday.getDate())) {
-        age--;
-    }
-
-    if (age < 16) {
-        alert('You must be at least 16 years old to register.');
-        return false;
-    }
-
-    // Якщо все валідно, встановіть значення для прихованого поля "id"
-    document.getElementById('studentId').value = generateId(); // Припустимо, що generateId() - це ваша функція для генерації унікального id
-
-    // Форма валідна, можна відправляти
-    return true;
-}
-
-
-function generateId() {
-    return 'STU' + Math.random().toString(36).substr(2, 9);
 }
